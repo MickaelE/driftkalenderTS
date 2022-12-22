@@ -1,0 +1,19 @@
+{
+  "type": "oracle",
+  "host": "10.255.255.98",
+  "port": 1521,
+  "username": "DK2_UDV",
+  "password": "ravesCWtQRnjtwEDEF",
+  "database": "bkstst",
+  "synchronize": true,
+  "logging": false,
+  "entities": [
+    "src/entity/**/*.ts"
+  ],
+  "migrations": [
+    "src/migration/**/*.ts"
+  ],
+  "subscribers": [
+    "src/subscriber/**/*.ts"
+  ]
+}
