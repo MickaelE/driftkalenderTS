@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import express, { Request, Response, NextFunction } from 'express';
 import MasterRouter from './routers/MasterRouter';
 import ErrorHandler from './models/ErrorHandler';
-import {AppDataSource} from "./data-source";
+
 // load the environment variables from the .env file
 dotenv.config({
     path: '.env'
@@ -16,10 +16,13 @@ class Server {
     public app = express();
     public router = MasterRouter;
 }
+
 // initialize server app
 const server = new Server();
-// entry
+
+// make server app handle any route starting with '/api'
 server.app.use('/api', server.router);
+
 // make server app handle any error
 server.app.use((err: ErrorHandler, req: Request, res: Response, next: NextFunction) => {
     res.status(err.statusCode || 500).json({

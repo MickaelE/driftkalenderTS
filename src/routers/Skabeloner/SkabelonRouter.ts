@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response, Router } from 'express';
 import SkabelonController from '../../controllers/SkabelonController';
-import {AppDataSource} from "../../data-source";
 import {Skabeloner} from "../../entity/Skabeloner";
 
 class SkabelonRouter {
@@ -21,8 +20,8 @@ class SkabelonRouter {
     private _configure() {
         this._router.get('/', async (req: Request, res: Response, next: NextFunction) => {
             try {
-                const skabeloner = await AppDataSource.getRepository(Skabeloner).find()
-                res.json(skabeloner)
+
+                res.json(SkabelonController.getAllSkabeloner())
                 const result = this._controller.defaultMethod();
                 res.status(200).json(result);
             } catch (error) {
